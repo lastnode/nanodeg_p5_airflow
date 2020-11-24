@@ -7,11 +7,11 @@ class StageToRedshiftOperator(BaseOperator):
 
     @apply_defaults
     def __init__(self,
-                 redshift_conn_id=""
-                 aws_credentials_id=""
-                 table=""
-                 s3_bucket=""
-                 s3_folder=""
+                 redshift_conn_id="",
+                 aws_credentials_id="",
+                 table="",
+                 s3_bucket="",
+                 s3_folder="",
                  region=""
                  *args, **kwargs):
 
