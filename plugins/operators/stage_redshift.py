@@ -39,17 +39,20 @@ class StageToRedshiftOperator(BaseOperator):
         self.log.info("Copying staging_events table.")
         
         staging_events_copy = ("""
-        copy staging_events from {}
-        access_key_id {}
-        secret_access_key {}
-        region {}
+        copy staging_events from '{}'
+        access_key_id '{}'
+        secret_access_key '{}'
+        region '{}'
         timeformat as 'epochmillisecs'
+        truncatecolumns
         blanksasnull
         emptyasnull
-        region 'us-west-2';
+        json 'auto';
         """).format(s3_path, aws_credentials.access_key, aws_credentials.secret_key, self.region)
         
         self.log.info(staging_events_copy)
+        
+        redshift_hook.run(staging_events_copy)
 
 
 
