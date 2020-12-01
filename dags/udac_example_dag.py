@@ -23,7 +23,8 @@ default_args = {
 dag = DAG('udac_example_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
-          schedule_interval='0 * * * *'
+          schedule_interval='0 0 * * * ',
+          catchup=False
         )
 
 # start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)
@@ -58,7 +59,6 @@ load_songplays_table = LoadFactOperator(
     task_id='Load_songplays_fact_table',
     dag=dag,
     redshift_conn_id="redshift",
-    table='songplays',
     sql_query=SqlQueries.songplay_table_insert
 )
 # 
