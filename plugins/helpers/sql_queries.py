@@ -1,6 +1,6 @@
 class SqlQueries:
     songplay_table_insert = ("""       
-        INSERT INTO songplays (start_time, user_id, level, song_id, artist_id, session_id, location, user_agent) 
+        INSERT INTO songplays (songplay_id, start_time, user_id, level, song_id, artist_id, session_id, location, user_agent) 
         SELECT
                 md5(events.sessionid || events.start_time) songplay_id,
                 events.start_time, 
