@@ -39,7 +39,7 @@ stage_events_to_redshift = StageToRedshiftOperator(
     s3_bucket="udacity-dend",
     s3_folder="log_data",
     region="us-west-2",
-    file_format="JSON"
+    json_format='s3://udacity-dend/log_json_path.json'
 )
 
 stage_songs_to_redshift = StageToRedshiftOperator(
@@ -52,7 +52,7 @@ stage_songs_to_redshift = StageToRedshiftOperator(
     s3_bucket="udacity-dend",
     s3_folder="song_data",
     region="us-west-2",
-    file_format="JSON"
+    json_format="auto"
 )
 
 load_songplays_table = LoadFactOperator(
