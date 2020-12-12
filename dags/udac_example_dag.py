@@ -11,8 +11,8 @@ from helpers import SqlQueries
 
 default_args = {
     'owner': 'mahangu',
-    'start_date': datetime(2020, 11, 30),
-    'end_date': datetime(2020, 12, 1),
+    'start_date': datetime(2020, 12, 11),
+    'end_date': datetime(2020, 12, 12),
     'depends_on_past': False,
     'retries': 5,
     'retry_delay': timedelta(minutes=5),
@@ -23,7 +23,7 @@ default_args = {
 dag = DAG('udac_example_dag',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
-          schedule_interval='0 0 * * *',
+          schedule_interval='@once',
           catchup=False
         )
 
