@@ -19,3 +19,4 @@ class LoadFactOperator(BaseOperator):
     def execute(self, context):
         redshift_hook = PostgresHook(self.redshift_conn_id)
         redshift_hook.run(self.sql_query)
+        self.log.info("Fact table loaded.")

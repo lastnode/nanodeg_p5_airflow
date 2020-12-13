@@ -15,7 +15,7 @@ default_args = {
     'end_date': datetime(2020, 12, 12),
     'depends_on_past': False,
     'retries': 5,
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=2),
     'catchup': False,
     'email_on_retry': False
 }
@@ -61,11 +61,14 @@ load_songplays_table = LoadFactOperator(
     redshift_conn_id="redshift",
     sql_query=SqlQueries.songplay_table_insert
 )
-# 
-# load_user_dimension_table = LoadDimensionOperator(
-#     task_id='Load_user_dim_table',
-#     dag=dag
-# )
+ 
+load_user_dimension_table = LoadDimensionOperator(
+    task_id='Load_user_dim_table',
+    dag=dag,
+    redshift_conn_id="redshift",
+    sql_query=SqlQueries.user_table_insert
+)
+
 # 
 # load_song_dimension_table = LoadDimensionOperator(
 #     task_id='Load_song_dim_table',
@@ -90,3 +93,5 @@ load_songplays_table = LoadFactOperator(
 
 stage_events_to_redshift >> load_songplays_table
 stage_songs_to_redshift >> load_songplays_table
+
+load_songplays_table >> load_user_dimension_table
