@@ -2,7 +2,7 @@ CREATE TABLE public.artists (
 	artistid varchar(256) NOT NULL,
 	name varchar(256),
 	location varchar(256),
-	lattitude numeric(18,0),
+	latitude numeric(18,0),
 	longitude numeric(18,0)
 );
 
@@ -84,7 +84,15 @@ CREATE TABLE public.users (
 	CONSTRAINT users_pkey PRIMARY KEY (userid)
 );
 
-
-
+CREATE TABLE public."time" (
+	start_time timestamp NOT NULL,
+	"hour" int4,
+	"day" int4,
+	week int4,
+	"month" varchar(256),
+	"year" int4,
+	dayofweek varchar(256),
+	CONSTRAINT time_pkey PRIMARY KEY (start_time)
+);
 
 
