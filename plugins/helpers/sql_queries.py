@@ -21,8 +21,6 @@ class SqlQueries:
     """)
 
     user_table_insert = ("""
-        INSERT INTO users (userid, first_name, last_name, gender, level) 
-
         SELECT distinct userid, firstname, lastname, gender, level
         FROM staging_events
         WHERE page='NextSong'
