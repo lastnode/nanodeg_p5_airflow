@@ -31,3 +31,4 @@ class LoadDimensionOperator(BaseOperator):
         self.log.info(self.sql_query)
         redshift_hook.run(self.sql_query)
         self.log.info("Dimension table {} loaded.".format(self.table))
+        
