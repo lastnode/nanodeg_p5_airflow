@@ -40,7 +40,7 @@ class DataQualityOperator(BaseOperator):
             
             if len(records) < 1 or len(records[0]) < 1:
 
-                error_message = "Data quality check failed on table {}.".format(error_mesage)
+                error_message = "Data quality check failed on table {}.".format(table)
                 
                 self.log.error(error_message)
 
@@ -48,4 +48,4 @@ class DataQualityOperator(BaseOperator):
             
             else:
                 
-                self.log.info("Data quality checks passed.")
+                self.log.info("Data quality checks passed on {}.".format(table))

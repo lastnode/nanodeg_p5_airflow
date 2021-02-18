@@ -60,13 +60,13 @@ class StageToRedshiftOperator(BaseOperator):
         
         self.log.info(s3_path)
 
-        self.log.info("Emptying table.")
+        self.log.info("Emptying table {}.".format(self.table))
         
         empty_table = ("""truncate {}""").format(self.table)
         
         redshift_hook.run(empty_table)
         
-        self.log.info("Copying staging_events table.")
+        self.log.info("Copying table {}.".format(self.table))
         
         staging_table_copy = ("""
         copy {} from '{}'
