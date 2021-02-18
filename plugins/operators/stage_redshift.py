@@ -85,10 +85,3 @@ class StageToRedshiftOperator(BaseOperator):
         redshift_hook.run(staging_table_copy)
         
         self.log.info("COPY complete!")
-
-
-
-
-
-
-
