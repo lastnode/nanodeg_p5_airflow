@@ -40,6 +40,9 @@ class StageToRedshiftOperator(BaseOperator):
         aws_credentials = aws_hook.get_credentials()
         redshift_hook = PostgresHook(postgres_conn_id=self.redshift_conn_id)
         
+        # `execution_date` as `YYYY-MM-DD` from the Airflow macro `{ds}`, which is passed in from the DAG task
+        # Via - https://airflow.apache.org/docs/apache-airflow/stable/macros-ref.html
+        
         execution_date = self.execution_date.format(**context)
         
         execution_date_object = datetime.datetime.strptime(execution_date, '%Y-%m-%d')
