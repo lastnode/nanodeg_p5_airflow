@@ -12,7 +12,7 @@ from helpers import SqlQueries
 default_args = {
     'owner': 'mahangu',
     'start_date': datetime(2018, 11, 1),
-    'end_date': datetime(2018, 11, 3),
+    'end_date': datetime(2018, 11, 2),
     'depends_on_past': False,
     'retries': 5,
     'retry_delay': timedelta(minutes=2),
@@ -24,8 +24,6 @@ dag = DAG('sparkify_etl',
           default_args=default_args,
           description='Load and transform data in Redshift with Airflow',
           schedule_interval='0 0 * * *',
-          start_date=datetime(2018, 11, 1),
-          end_date=datetime(2018, 11, 3),
         )
 
 start_operator = DummyOperator(task_id='Begin_execution',  dag=dag)

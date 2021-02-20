@@ -33,9 +33,9 @@ To get going, you will need to create two new connections within Airflow:
 ### Amazong S3
 First, you will need to [create an IAM Role](https://docs.aws.amazon.com/redshift/latest/dg/c-getting-started-using-spectrum-create-role.html) that [allows Redshift to access S3](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html) for you. Once you have created the role, grab the `Access key ID` and the `Secret access key` and add them to Airflow under `Admin > Connections > Create`. 
 
-Conn ID: `aws_credentials`
-Login: _the Access key ID for your Redshift > S3 IAM Role_
-Password: _Secret access key for this Access key ID_
+- Conn ID: `aws_credentials`
+- Login: _the Access key ID for your Redshift > S3 IAM Role_
+- Password: _Secret access key for this Access key ID_
 
 This is the connection that allows Airflow to access S3 and copy the `.json` files from the Sparkify S3 bucket, so unless you have configured this correctly, the `sparkify_etl.py` DAG will not be able to execute the `StageToRedshiftOperator` correctly and it will fail.
 
@@ -43,12 +43,12 @@ This is the connection that allows Airflow to access S3 and copy the `.json` fil
 ### Amazon Redshift
 Next, you will need to add your Amazon Redshift connection details to a new Airflow connection. Note that for Airflow to access your Redshift cluster, you will need to [Authorize access to the cluster](https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-authorize-cluster-access.html). This may require [some troubleshooting](https://aws.amazon.com/premiumsupport/knowledge-center/cannot-connect-redshift-cluster/) the first time you do it.
 
-Conn ID: `redshift`
-Host: _your Amazon Redshift cluster's endpoint (usually something like: `your_cluster_name.abcdefgh.us-west-2.redshift.amazonaws.com`)
-Schema: _the name of the Redshift db_
-Login: _your Redshift username_
-Password: _your Redshift password_
-Port: _the port you have opened to allow connections on (`5439` by default)_
+- Conn ID: `redshift`
+- Host: _your Amazon Redshift cluster's endpoint (usually something like: `your_cluster_name.abcdefgh.us-west-2.redshift.amazonaws.com`)
+- Schema: _the name of the Redshift db_
+- Login: _your Redshift username_
+- Password: _your Redshift password_
+- Port: _the port you have opened to allow connections on (`5439` by default)_
 
 ## Ready Redshift
 
