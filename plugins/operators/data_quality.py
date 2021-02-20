@@ -43,6 +43,9 @@ class DataQualityOperator(BaseOperator):
                 error_message = "Data quality check failed on table {}.".format(table)
                 
                 self.log.error(error_message)
+                
+                # Raise an error so the task can be retried
+                # Via - https://stackoverflow.com/questions/43111506/how-do-i-force-a-task-on-airflow-to-fail
 
                 raise ValueError(error_message)
             
