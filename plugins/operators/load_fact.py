@@ -23,7 +23,7 @@ class LoadFactOperator(BaseOperator):
     def execute(self, context):
         redshift_hook = PostgresHook(self.redshift_conn_id)
         
-         if self.truncate_table == True:
+        if self.truncate_table == True:
             self.log.info("Truncating table.")
             redshift_hook.run(f"TRUNCATE TABLE {self.table}")
             
