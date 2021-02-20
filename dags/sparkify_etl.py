@@ -63,6 +63,7 @@ load_songplays_table = LoadFactOperator(
     dag=dag,
     redshift_conn_id="redshift",
     table="songplays",
+    truncate_table=True,
     sql_query=SqlQueries.songplay_table_insert
 )
  

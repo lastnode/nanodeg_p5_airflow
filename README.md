@@ -52,8 +52,6 @@ Next, you will need to add your Amazon Redshift connection details to a new Airf
 
 ## Ready Redshift
 
-![Ready Redshift DAG graph view](images/ready_redshift_dag.png)
-
 Once your connections are set up correctly in Airflow, go ahead and run the `ready_redshift.py` dag. This **will drop any existing tables** with the following names from your database: `staging_songs`, `staging_events`, `songplays`, `songs`, `users`,`artists`, `time` and recreate the same tables with the following schemas:
 
 ````
@@ -176,8 +174,6 @@ staging_events_table_create = ("""
 ````
 
 ## Run Sparkify ETL
-
-![sparkify ETL DAG graph view](images/sparkify_etl_dag.png)
 
 Once the `ready_redshift.py` DAG has been run, you can toggle it off and toggle on the `sparkify_etl.py` DAG. Before doing so, you may want to configure its `start_date` and `end_date` values in the `default_args` dict, as the DAG is scheduled to run once an hour, and having it scheduled to run acros many days could result in a lot of backfill tasks being scheduled.
 
