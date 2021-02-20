@@ -190,7 +190,7 @@ Once the `sparkify_etl.py` DAG has run succesfully, you will be able to query th
 
 #### How many songs were started by free vs paid users?
 
-`select count(songplay_id), users.level from songplays inner join users on songplays.user_id = users.user_id group by 2;`
+`select count(songplay_id), users.level from songplays inner join users on songplays.userid = users.userid group by 2;`
 
 #### Which hour of the day are users starting to play the most songs?
 
@@ -198,7 +198,7 @@ Once the `sparkify_etl.py` DAG has run succesfully, you will be able to query th
 
 #### Which 30 users have started listening to the most songs?
 
-`select user_id, count(songplay_id) from songplays group by user_id order by 2 desc limit 30;`
+`select userid, count(songplay_id) from songplays group by userid order by 2 desc limit 30;`
 
 
 #### What are the most popular operating systems among users who have played songs?
@@ -216,17 +216,17 @@ from songplays;
 
 ```
 select
-    count(songs.song_id) as count,
+    count(songs.songid) as count,
     songs.title, 
     songs.year
 from songplays
 
-join songs on songplays.song_id = songs.song_id
+join songs on songplays.song_id = songs.songid
 
 where songs.year BETWEEN 1990 and 1999
 
-group by songs.song_id, songs.title,  songs.year 
-order by count(songs.song_id) desc;
+group by songs.songid, songs.title,  songs.year 
+order by count(songs.songid) desc;
 ```
 
 
