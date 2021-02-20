@@ -181,7 +181,7 @@ Here are some other options that can be configured in this DAG.
 
 - In the `stage_events_to_redshift` task, `partition_data` can be set to either `True` or `False`. If set to `True`, the StageToRedshiftOperator will only process files from the S3 `log_data` folder based on the `execution_date` of the DAG. This can be a useful way to only process data for a certain timeframe.
 
-- In all the `load_*_dimension_table` tasks, the `truncate_table` attribute can be set to either `True` or `False`. If set to `True`, the LoadDimensionOperator will [TRUNCATE](https://docs.aws.amazon.com/redshift/latest/dg/r_TRUNCATE.html) the tables before running the new queries on them. This can be useful if you do not want to run the `ready_redshift.py` DAG before every ETL test run.
+- In all the `load_songplays_table` and `load_*_dimension_table` tasks, the `truncate_table` attribute can be set to either `True` or `False`. If set to `True`, the `LoadFactOperator` / `LoadDimensionOperator` will [TRUNCATE](https://docs.aws.amazon.com/redshift/latest/dg/r_TRUNCATE.html) the tables before running the new queries on them. This allows you to switch between append-only and insert-delete functionality for these tasks.
 
 ## Queries
 
